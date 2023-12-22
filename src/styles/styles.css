@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* utils */
+
+.fade-in {
+    right: 0;
+    transition: right 0.2s linear;
+}
+
+.fade-out {
+    right: -24rem;
+    transition: right 0.2s linear;
+}
