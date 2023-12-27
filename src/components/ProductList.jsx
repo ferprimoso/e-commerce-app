@@ -32,13 +32,14 @@ export default function ProductList() {
     }, [])
 
     return (
-        <div className="flex flex-wrap justify-between basis-4/5 ">
+        <div className="flex flex-wrap justify-between basis-4/5 gap-y-4">
 
             {loading &&
                 <h1>Loading</h1>
 
             }
             {!loading &&
+
                 data.map(data => <ProductCard key={data.id} product={data} />)
 
 

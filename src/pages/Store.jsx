@@ -7,6 +7,7 @@ export default function Store() {
         <div className="mt-20 flex gap-4">
             <SideBar />
             <ProductList />
+
         </div>
     )
 }
