@@ -16,12 +16,62 @@ function App() {
   }
 
   const addToCart = (product) => {
-    const temp = [];
-    temp.push(product)
-    setCart([...cart, product])
 
-    console.log(cart)
+    // if (cart.some(item => item.id === product.id)) {
+    //   console.log('cart before adding one more quantity', cart)
+    //   const updatedCart = cart.map(item =>
+    //     item.id === product.id ? { ...item, quantity: item.quantity++ } : item
+    //   )
+    //   setCart(updatedCart)
+    //   console.log('cart after updating quantity', cart)
+    // } else {
+    //   product.quantity = 1
+    //   setCart([...cart, product])
+    // }
+
+
+    setCart((prevCart) => {
+      if (prevCart.some(item => item.id === product.id)) {
+        const updatedCart = prevCart.map(item =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
+        return updatedCart;
+      } else {
+        product.quantity = 1;
+        const newCart = [...prevCart, product];
+        return newCart;
+      }
+    });
+
     setCartModalVisible(true)
+
+  }
+
+
+  const addOneProduct = (productId) => {
+    const updatedCart = cart.filter(item =>
+      item.id === productId ? { ...item, quantity: item.quantity++ } : item
+    )
+    setCart(updatedCart)
+  }
+
+  const removeOneProduct = (productId) => {
+    if (cart.some(item => item.id === productId && item.quantity <= 1)) {
+      removeFromCart(productId)
+    } else {
+      const updatedCart = cart.filter(item =>
+        item.id === productId ? { ...item, quantity: item.quantity-- } : item
+      )
+
+      setCart(updatedCart)
+    }
+  }
+
+  const removeFromCart = (productId) => {
+    const updatedCart = cart.filter(item =>
+      item.id !== productId
+    )
+    setCart(updatedCart)
   }
 
 
@@ -45,6 +95,9 @@ function App() {
         cart={cart}
         cartModalVisible={cartModalVisible}
         hideCartModal={hideCartModal}
+        removeFromCart={removeFromCart}
+        addOneProduct={addOneProduct}
+        removeOneProduct={removeOneProduct}
       />
     </div>
   )

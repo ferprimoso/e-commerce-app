@@ -3,8 +3,12 @@ import { MdClose } from "react-icons/md";
 import CartCard from "./CartCard"
 
 
-export default function CartModal({ cart, cartModalVisible, hideCartModal }) {
+export default function CartModal({ cart, cartModalVisible, hideCartModal, removeFromCart, addOneProduct, removeOneProduct }) {
     console.log(cart)
+
+    const totalPrice = cart.reduce((acc, obj) => {
+        return acc + obj.price * obj.quantity
+    }, 0)
 
 
     return (
@@ -24,12 +28,23 @@ export default function CartModal({ cart, cartModalVisible, hideCartModal }) {
                     </div>
 
 
-                    <div className="h-full flex flex-col justify-start">
+                    <div className="h-full flex flex-col justify-start overflow-y-auto">
                         {(cart.length === 0) &&
                             <span>no products yet...</span>
 
                         }
-                        {cart.map(product => <CartCard key={product.id} product={product} />)}
+                        {cart.map(product =>
+                            <CartCard key={product.id}
+                                product={product}
+                                removeFromCart={removeFromCart}
+                                addOneProduct={addOneProduct}
+                                removeOneProduct={removeOneProduct}
+                            />
+                        )}
+                    </div>
+
+                    <div className="mb-4">
+                        <span className="text-4xl">Total: $ {totalPrice}</span>
                     </div>
 
                     <button className="rounded-lg bg-black p-4">
