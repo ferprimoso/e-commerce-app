@@ -1,33 +1,41 @@
 import { Link } from "react-router-dom";
 
 import { MdDeleteOutline } from "react-icons/md";
+import { MdAdd } from "react-icons/md";
+import { MdRemove } from "react-icons/md";
+
 
 
 export default function CartCard({ product, removeFromCart, removeOneProduct, addOneProduct }) {
     return (
-        <div className="h-36 flex justify-start shadow-lg rounded-lg p-4 gap-4">
+        <div className="h-36 flex shadow-md rounded-lg p-4 gap-4 mb-4">
             <div className="shrink-0">
-                <img className="w-12 md-w-20 max-w-full" src={product.image} alt={product.title} />
+                <img className="w-20 max-w-full h-20 object-contain" src={product.image} alt={product.title} />
             </div>
-            <div className="flex flex-col justify-between">
+            <div className="w-full flex flex-col justify-between gap-y-5">
                 <div>
                     <Link to={`/product/${product.id}`}>
                         <h2 className="leading-4 line-clamp-3 md:line-clamp-none">{product.title}</h2>
                     </Link>
                 </div>
 
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center ">
                     <h2 className="font-bold">$ {product.price}</h2>
-                    <h1>
-                        <button onClick={() => removeOneProduct(product.id)}>-</button>
+                    <div className="flex items-center gap-2">
 
-                        {product.quantity}
+                        <button className="bg-slate-100 hover:bg-slate-300 transition-colors duration-150" onClick={() => removeOneProduct(product.id)}>
+                            <MdRemove size={"1.5rem"} />
+                        </button>
 
-                        <button onClick={() => addOneProduct(product.id)}> + </button>
+                        <span className="text-xl" > {product.quantity}</span>
 
-                    </h1>
-                    <button onClick={() => removeFromCart(product.id)}>
-                        <MdDeleteOutline />
+                        <button className="bg-slate-100 hover:bg-slate-300 transition-colors duration-150" onClick={() => addOneProduct(product.id)}>
+                            <MdAdd size={"1.5rem"} />
+                        </button>
+
+                    </div>
+                    <button className=" text-grey-300 hover:text-red-500 transition-colors duration-150" onClick={() => removeFromCart(product.id)}>
+                        <MdDeleteOutline size={"1.5rem"} />
                     </button>
                 </div>
             </div>

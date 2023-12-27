@@ -18,7 +18,7 @@ export default function CartModal({ cart, cartModalVisible, hideCartModal, remov
             }
 
             <div className={`fixed inset-y-0 right-0 w-96 h-full bg-white p-8  ${cartModalVisible ? 'fade-in' : 'fade-out'} `}>
-                <div className="cart-content h-full flex flex-col  justify-between ">
+                <div className="cart-content h-full flex flex-col justify-between ">
 
                     <div className="flex justify-between items-center mb-4">
                         <h1 className="text-4xl">Shopping Cart</h1>
@@ -28,32 +28,32 @@ export default function CartModal({ cart, cartModalVisible, hideCartModal, remov
                     </div>
 
 
-                    <div className="h-full flex flex-col justify-start overflow-y-auto">
-                        {(cart.length === 0) &&
-                            <span>no products yet...</span>
+                    <div className="overflow-hidden flex h-full">
+                        <div className="h-full flex flex-col justify-start overflow-y-auto flex-auto">
+                            {(cart.length === 0) &&
+                                <span>no products yet...</span>
 
-                        }
-                        {cart.map(product =>
-                            <CartCard key={product.id}
-                                product={product}
-                                removeFromCart={removeFromCart}
-                                addOneProduct={addOneProduct}
-                                removeOneProduct={removeOneProduct}
-                            />
-                        )}
+                            }
+                            {cart.map(product =>
+                                <CartCard key={product.id}
+                                    product={product}
+                                    removeFromCart={removeFromCart}
+                                    addOneProduct={addOneProduct}
+                                    removeOneProduct={removeOneProduct}
+                                />
+                            )}
+                        </div>
                     </div>
 
-                    <div className="mb-4">
-                        <span className="text-4xl">Total: $ {totalPrice}</span>
-                    </div>
 
-                    <button className="rounded-lg bg-black p-4">
-                        <span className="text-white font-bold">Checkout</span>
-                    </button>
+                    <div className="flex flex-col">
+                        <span className="text-4xl mb-4">Total: $ {totalPrice.toFixed(2)}</span>
+                        <button className="rounded-lg bg-rose-700 p-4 hover:bg-rose-900">
+                            <span className="text-white font-bold">Checkout</span>
+                        </button>
+
+                    </div>
                 </div>
-
-
-
             </div>
         </>
     )
