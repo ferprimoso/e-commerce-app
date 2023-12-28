@@ -92,8 +92,9 @@ export default function ProductList({ category }) {
 
                 <div className="flex flex-col">
 
-                    <div className="self-end">
-                        <select name="sort" id="sort" value={option} onChange={handleChange}>
+                    <div className="px-6 flex justify-between items-center">
+                        <span className="font-medium">{data.length} products</span>
+                        <select className="p-2 rounded-lg" name="sort" id="sort" value={option} onChange={handleChange}>
                             <option value="sort" disabled hidden>Sort</option>
                             <option value="popular">More popular</option>
                             <option value="a-z">A-Z</option>
@@ -103,10 +104,10 @@ export default function ProductList({ category }) {
                         </select>
                     </div>
 
-                    <button onClick={() => console.log(category)}>hii</button>
+                    {/* <button onClick={() => console.log(category)}>hii</button> */}
 
 
-                    <div className="flex flex-wrap gap-y-4 justify-between" >
+                    <div className="mt-2 grid grid-cols-2 md:grid-cols-3 gap-4" >
 
                         {data.map(data => <ProductCard key={data.id} product={data} />)}
 

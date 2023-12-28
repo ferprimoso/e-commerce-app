@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import { useState } from "react"
 
 import Header from "./components/Header"
+import Footer from "./components/Footer"
 import Home from "./pages/Home"
 import Store from "./pages/Store"
 import Product from "./pages/Product"
@@ -16,20 +17,6 @@ function App() {
   }
 
   const addToCart = (product) => {
-
-    // if (cart.some(item => item.id === product.id)) {
-    //   console.log('cart before adding one more quantity', cart)
-    //   const updatedCart = cart.map(item =>
-    //     item.id === product.id ? { ...item, quantity: item.quantity++ } : item
-    //   )
-    //   setCart(updatedCart)
-    //   console.log('cart after updating quantity', cart)
-    // } else {
-    //   product.quantity = 1
-    //   setCart([...cart, product])
-    // }
-
-
     setCart((prevCart) => {
       if (prevCart.some(item => item.id === product.id)) {
         const updatedCart = prevCart.map(item =>
@@ -82,15 +69,19 @@ function App() {
 
   return (
     <div className="app">
-      <Header displayCartModal={displayCartModal} />
+      <Header
+        displayCartModal={displayCartModal}
+        cartQuantity={cart.length}
+      />
 
-      <div className="m-auto max-w-screen-xl">
+      <div className="mx-auto max-w-screen-xl ">
         <Routes>
           <Route path="/" element={<Store />} />
           <Route path="/home" element={<Home />} />
           <Route path="/product/:id" element={<Product addToCart={addToCart} />} />
         </Routes>
       </div>
+      <Footer />
       <CartModal
         cart={cart}
         cartModalVisible={cartModalVisible}
