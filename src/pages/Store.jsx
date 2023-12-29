@@ -10,9 +10,11 @@ export default function Store() {
     }
 
     return (
-        <div className="flex flex-col justify-center gap-4 md:flex-row min-h-screen pt-4 md:pt-10">
-            <SideBar changeCategory={changeCategory} />
-            <ProductList category={category} />
+        <div className="mx-auto max-w-screen-xl ">
+            <div className="flex flex-col gap- md:flex-row min-h-screen pt-4 md:pt-10">
+                <SideBar changeCategory={changeCategory} />
+                <ProductList category={category} />
+            </div>
         </div>
     )
 }

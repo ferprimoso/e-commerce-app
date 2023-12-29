@@ -13,3 +13,13 @@
     right: -24rem;
     transition: right 0.2s linear;
 }
+
+.fade-in-menu {
+    left: 0;
+    transition: left 0.2s linear;
+}
+
+.fade-out-menu {
+    left: -24rem;
+    transition: left 0.2s linear;
+}

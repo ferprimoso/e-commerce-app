@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import ProductCard from "./ProductCard";
+import Loading from "./Loading";
 
 export default function ProductList({ category }) {
 
@@ -85,7 +86,7 @@ export default function ProductList({ category }) {
         <div className="flex flex-wrap justify-between basis-4/5">
 
             {loading &&
-                <h1>Loading</h1>
+                <Loading />
 
             }
             {!loading &&
