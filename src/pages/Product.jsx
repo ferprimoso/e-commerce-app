@@ -46,7 +46,7 @@ export default function Product({ addToCart }) {
             {product &&
                 <div className="mt-10 flex flex-col md:flex-row">
                     <div className="basis-1/2 mx-auto mb-4">
-                        <img className="w-80 h-80" src={product.image} alt={product.name} />
+                        <img className="w-80 h-80 md:w-fit md:h-auto md:px-12" src={product.image} alt={product.name} />
                     </div>
                     <div className="basis-1/2">
                         <div className="mb-4">

@@ -33,7 +33,7 @@ export default function Header({ displayMenuModal, displayCartModal, cartQuantit
 
     return (
         <header className={`${isInHome ? 'bg-transparent ' : 'bg-rose-700  shadow-md sticky'} text-white w-full flex justify-center items-center  top-0`} >
-            <div className="max-w-screen-xl w-full py-4 sm:py-0 px-3 flex justify-between items-center">
+            <div className="max-w-screen-xl w-full py-4 lg:py-0 px-3 flex justify-between items-center">
                 <Link to="/" className="flex items-center">
                     <MdStorefront size={'2rem'} />
                     <h1 className="text-xl md:text-3xl font-medium">SuperStore</h1>
@@ -54,12 +54,12 @@ export default function Header({ displayMenuModal, displayCartModal, cartQuantit
                         <ul className="font-medium text-xl flex items-center p-4">
                             <li>
                                 <Link to="/" className="flex items-center">
-                                    <a className="block py-2 px-3" aria-current="page">Home</a>
+                                    <span className="block py-2 px-3" aria-current="page">Home</span>
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/store" className="flex items-center">
-                                    <a href="#" className="block py-2 px-3" >Shop</a>
+                                    <span className="block py-2 px-3" >Shop</span>
                                 </Link>
                             </li>
                         </ul>

@@ -20,16 +20,18 @@ export default function MenuModal({ menuModalVisible, hideMenuModal }) {
                         </button>
                     </div>
                     <div>
-                        <SearchBar />
+                        <div className="border-2" >
+                            <SearchBar hideMenuModal={hideMenuModal} />
+                        </div>
                         <ul className="font-medium text-xl flex flex-col items-start">
                             <li>
                                 <Link to="/" className="flex items-center" onClick={hideMenuModal}>
-                                    <a className="block py-2 " aria-current="page">Home</a>
+                                    <span className="block py-2 " aria-current="page">Home</span>
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/store" className="flex items-center" onClick={hideMenuModal}>
-                                    <a href="#" className="block py-2 " >Shop</a>
+                                    <span href="#" className="block py-2 " >Shop</span>
                                 </Link>
                             </li>
                         </ul>

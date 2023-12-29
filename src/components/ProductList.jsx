@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import ProductCard from "./ProductCard";
 import Loading from "./Loading";
 
-export default function ProductList({ category }) {
+export default function ProductList({ category, searchTerm }) {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -55,6 +55,7 @@ export default function ProductList({ category }) {
         sortData(e.target.value)
     }
 
+
     useEffect(() => {
         const getData = async () => {
             try {
@@ -68,6 +69,9 @@ export default function ProductList({ category }) {
                     );
                 }
                 let actualData = await response.json();
+                if (searchTerm) {
+                    actualData = actualData.filter((element) => element.title.toLowerCase().includes(searchTerm.toLowerCase()))
+                }
                 setData(actualData);
                 setError(null);
             } catch (err) {
@@ -78,8 +82,12 @@ export default function ProductList({ category }) {
             }
         }
         getData()
-        console.log('fetched');
-    }, [category])
+
+        return () => {
+            searchTerm = ''
+        }
+
+    }, [category, searchTerm])
 
     return (
 
@@ -91,9 +99,9 @@ export default function ProductList({ category }) {
             }
             {!loading &&
 
-                <div className="flex flex-col">
+                <div className="w-full">
 
-                    <div className="px-6 flex justify-between items-center">
+                    <div className="px-6 w-full flex justify-between items-center">
                         <span className="font-medium">{data.length} products</span>
                         <select className="p-2 rounded-lg" name="sort" id="sort" value={option} onChange={handleChange}>
                             <option value="sort" disabled hidden>Sort</option>
@@ -105,27 +113,14 @@ export default function ProductList({ category }) {
                         </select>
                     </div>
 
-                    {/* <button onClick={() => console.log(category)}>hii</button> */}
-
-
                     <div className="mt-2 grid grid-cols-2 md:grid-cols-3 gap-4" >
 
                         {data.map(data => <ProductCard key={data.id} product={data} />)}
 
                     </div>
 
-
-
-
-
                 </div>
-
-
-
-
             }
-
-
 
         </div>
     )

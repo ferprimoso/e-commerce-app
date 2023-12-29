@@ -4,7 +4,7 @@ export default function Home() {
     return (
         <main className="flex flex-col">
             <img className="absolute -z-50 top-0 h-96 w-full object-cover brightness-50 " src="/hero-image.jpg" alt="Girl Shopping" />
-            <div className="w-full min-h-screen md:h-[calc(100vh-108px)] py-4">
+            <div className="w-full  py-4">
                 <div className="mx-auto max-w-screen-xl">
                     <div className="mb-20 px-10 flex justify-between items-center flex-col md:flex-row gap-8">
                         <div>
@@ -26,7 +26,7 @@ export default function Home() {
 
                     </div>
 
-                    <div className="p-10 flex justify-around items-center flex-col md:flex-row gap-8">
+                    <div className="p-10 md:pd-16 flex justify-around items-center flex-col md:flex-row gap-8">
                         <div className="shrink-0">
                             <img className="size-46 md:size-96 rounded-full object-cover" src="/shopping-cart.jpg" alt="Shopping Cart" />
                         </div>
