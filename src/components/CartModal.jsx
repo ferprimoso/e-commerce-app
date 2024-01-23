@@ -1,14 +1,17 @@
+import { useMemo } from "react";
 import { MdClose } from "react-icons/md";
 
 import CartCard from "./CartCard"
 
 
 export default function CartModal({ cart, cartModalVisible, hideCartModal, removeFromCart, addOneProduct, removeOneProduct }) {
-    console.log(cart)
 
-    const totalPrice = cart.reduce((acc, obj) => {
-        return acc + obj.price * obj.quantity
-    }, 0)
+    const totalPrice = useMemo(() => {
+        return cart.reduce(
+            (total, product) => total + product.price * product.quantity,
+            0
+        );
+    }, [cart]);
 
 
     return (
