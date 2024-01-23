@@ -1,104 +1,88 @@
-import { Route, Routes } from "react-router-dom"
-import { useState } from "react"
+import { Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
 
-import NotFound from "./components/NotFound"
-import Header from "./components/Header"
-import Footer from "./components/Footer"
-import Home from "./pages/Home"
-import Store from "./pages/Store"
-import Product from "./pages/Product"
-import CartModal from "./components/CartModal"
-import MenuModal from "./components/MenuModal"
+import NotFound from './components/NotFound';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Store from './pages/Store';
+import Product from './pages/Product';
+import CartModal from './components/CartModal';
+import MenuModal from './components/MenuModal';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
-  const [cart, setCart] = useState([])
-  const [cartModalVisible, setCartModalVisible] = useState(false)
-  const [menuModalVisible, setMenuModalVisible] = useState(false)
+  const [cart, setCart] = useState([]);
+  const [cartModalVisible, setCartModalVisible] = useState(false);
+  const [menuModalVisible, setMenuModalVisible] = useState(false);
 
-
-  //menu modal
+  // menu modal
   const displayMenuModal = () => {
-    setMenuModalVisible(true)
-  }
-
+    setMenuModalVisible(true);
+  };
 
   const hideMenuModal = () => {
-    setMenuModalVisible(false)
-  }
+    setMenuModalVisible(false);
+  };
 
-
-  //cart logic
+  // cart logic
   const displayCartModal = () => {
-    setCartModalVisible(true)
-  }
-
-
+    setCartModalVisible(true);
+  };
 
   const addToCart = (product) => {
     setCart((prevCart) => {
-      if (prevCart.some(item => item.id === product.id)) {
-        const updatedCart = prevCart.map(item =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
+      if (prevCart.some((item) => item.id === product.id)) {
+        const updatedCart = prevCart.map((item) => (item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item));
         return updatedCart;
-      } else {
-        product.quantity = 1;
-        const newCart = [...prevCart, product];
-        return newCart;
       }
+      product.quantity = 1;
+      const newCart = [...prevCart, product];
+      return newCart;
     });
 
-    setCartModalVisible(true)
-
-  }
-
+    setCartModalVisible(true);
+  };
 
   const addOneProduct = (productId) => {
-    const updatedCart = cart.filter(item =>
-      item.id === productId ? { ...item, quantity: item.quantity++ } : item
-    )
-    setCart(updatedCart)
-  }
+    const updatedCart = cart.filter((item) => (item.id === productId ? { ...item, quantity: item.quantity++ } : item));
+    setCart(updatedCart);
+  };
 
   const removeOneProduct = (productId) => {
-    if (cart.some(item => item.id === productId && item.quantity <= 1)) {
-      removeFromCart(productId)
+    if (cart.some((item) => item.id === productId && item.quantity <= 1)) {
+      removeFromCart(productId);
     } else {
-      const updatedCart = cart.filter(item =>
-        item.id === productId ? { ...item, quantity: item.quantity-- } : item
-      )
+      const updatedCart = cart.filter((item) => (item.id === productId ? { ...item, quantity: item.quantity-- } : item));
 
-      setCart(updatedCart)
+      setCart(updatedCart);
     }
-  }
+  };
 
   const removeFromCart = (productId) => {
-    const updatedCart = cart.filter(item =>
-      item.id !== productId
-    )
-    setCart(updatedCart)
-  }
-
+    const updatedCart = cart.filter((item) => item.id !== productId);
+    setCart(updatedCart);
+  };
 
   const hideCartModal = () => {
-    setCartModalVisible(false)
-  }
-
+    setCartModalVisible(false);
+  };
 
   return (
-    <div className="app">
+    <div className='app'>
       <Header
         displayCartModal={displayCartModal}
         displayMenuModal={displayMenuModal}
         cartQuantity={cart.length}
       />
 
-      <div className="mx-auto">
+      <div className='mx-auto'>
+        <ScrollToTop />
         <Routes>
           <Route path='*' element={<NotFound />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/store" element={<Store />} />
-          <Route path="/product/:id" element={<Product addToCart={addToCart} />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/store' element={<Store />} />
+          <Route path='/product/:id' element={<Product addToCart={addToCart} />} />
         </Routes>
       </div>
       <Footer />
@@ -115,7 +99,7 @@ function App() {
         hideMenuModal={hideMenuModal}
       />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
